@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog | Shiva Bollam</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <div class="brand">shiva<span>.dev</span></div>
+    <nav class="site-nav">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="experience.html">Experience</a>
+      <a href="projects.html">Projects</a>
+      <a href="blog.html" class="active">Blog</a>
+      <a href="resume.html">Resume</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="eyebrow">Blog</div>
+  <h1>Writing</h1>
+  <p>
+    I write on <a href="https://dev.to/shivabollam07" target="_blank" rel="noopener">dev.to</a> —
+    23 posts since 2023, mostly on Java, networking, LeetCode write-ups, and web dev.
+  </p>
+
+  <div class="panel">
+    <div class="date">Oct 2024</div>
+    <h3><a href="https://dev.to/shivabollam07/understanding-the-osi-model-a-step-by-step-breakdown-3np1" target="_blank" rel="noopener">Understanding the OSI Model: A Step-by-Step Breakdown</a></h3>
+    <div class="tag-row"><span class="tag">networking</span><span class="tag">devops</span></div>
+  </div>
+
+  <div class="panel">
+    <div class="date">Sep 2024</div>
+    <h3><a href="https://dev.to/shivabollam07/js-vs-jsx-should-you-write-your-react-code-in-jsx-3mp9" target="_blank" rel="noopener">.js vs. .jsx: Should You Write Your React Code in .jsx?</a></h3>
+    <div class="tag-row"><span class="tag">react</span></div>
+  </div>
+
+  <div class="panel">
+    <div class="date">Jul 2024</div>
+    <h3><a href="https://dev.to/shivabollam07/1669-merge-in-between-linked-lists-leetcode-144c" target="_blank" rel="noopener">1669. Merge In Between Linked Lists — LeetCode</a></h3>
+    <div class="tag-row"><span class="tag">leetcode</span></div>
+  </div>
+
+  <div class="panel">
+    <div class="date">Sep 2023</div>
+    <h3><a href="https://dev.to/shivabollam07/solving-all-nodes-distance-k-in-binary-tree-leet-code-question-30if" target="_blank" rel="noopener">Solving "All Nodes Distance K in Binary Tree" — LeetCode</a></h3>
+    <div class="tag-row"><span class="tag">java</span><span class="tag">leetcode</span></div>
+  </div>
+
+  <div class="panel">
+    <div class="date">Sep 2023</div>
+    <h3><a href="https://dev.to/shivabollam07/exploring-java-threading-a-beginners-guide-211m" target="_blank" rel="noopener">Exploring Java Threading: A Beginner's Guide</a></h3>
+    <div class="tag-row"><span class="tag">java</span><span class="tag">concurrency</span></div>
+  </div>
+
+  <div class="panel">
+    <div class="date">Sep 2023</div>
+    <h3><a href="https://dev.to/shivabollam07/why-java-is-an-object-oriented-programming-language-4pgn" target="_blank" rel="noopener">Why Java Is an Object-Oriented Programming Language?</a></h3>
+    <div class="tag-row"><span class="tag">java</span></div>
+  </div>
+
+  <p class="more-link">
+    <a href="https://dev.to/shivabollam07" target="_blank" rel="noopener">→ see all 23 posts on dev.to</a>
+  </p>
+
+</main>
+
+<footer class="wrap">
+  <div class="foot-row">
+    <span>© <span id="year"></span> Shiva Bollam</span>
+    <span><a href="mailto:shivabollam07@gmail.com">shivabollam07@gmail.com</a></span>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>

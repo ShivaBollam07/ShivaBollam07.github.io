@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resume | Shiva Bollam</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <div class="brand">shiva<span>.dev</span></div>
+    <nav class="site-nav">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="experience.html">Experience</a>
+      <a href="projects.html">Projects</a>
+      <a href="blog.html">Blog</a>
+      <a href="resume.html" class="active">Resume</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="eyebrow">Resume</div>
+  <h1>Full resume</h1>
+  <p>
+    The full breakdown of my experience, skills, and certifications lives on FlowCV — that's the
+    one I keep up to date for applications. The summary below is a quick reference; the button
+    opens the complete version.
+  </p>
+
+  <div class="btn-row">
+    <a class="btn" href="https://flowcv.com/resume/sre4pi8bnh" target="_blank" rel="noopener">View full resume</a>
+    <a class="btn ghost" href="mailto:shivabollam07@gmail.com">Email me</a>
+  </div>
+
+  <section class="block">
+    <h2>Skills</h2>
+
+    <div class="skill-group">
+      <div class="label">Languages &amp; databases</div>
+      <div class="skill-chips">
+        <span class="chip">Java (Core &amp; Advanced)</span>
+        <span class="chip">JavaScript</span>
+        <span class="chip">SQL</span>
+        <span class="chip">MySQL</span>
+        <span class="chip">MongoDB</span>
+        <span class="chip">PostgreSQL</span>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <div class="label">Frameworks &amp; libraries</div>
+      <div class="skill-chips">
+        <span class="chip">Spring Boot</span>
+        <span class="chip">Spring MVC</span>
+        <span class="chip">Spring Security</span>
+        <span class="chip">Spring JPA</span>
+        <span class="chip">Hibernate</span>
+        <span class="chip">J2EE</span>
+        <span class="chip">React.js</span>
+        <span class="chip">Node.js</span>
+        <span class="chip">Express.js</span>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <div class="label">Cloud, DevOps &amp; systems</div>
+      <div class="skill-chips">
+        <span class="chip">AWS SNS</span>
+        <span class="chip">AWS Lambda</span>
+        <span class="chip">CloudWatch</span>
+        <span class="chip">S3</span>
+        <span class="chip">Git / GitHub / GitLab</span>
+        <span class="chip">Linux</span>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <div class="label">Domain</div>
+      <div class="skill-chips">
+        <span class="chip">DICOM</span>
+        <span class="chip">HL7</span>
+        <span class="chip">PACS integration</span>
+        <span class="chip">High availability</span>
+        <span class="chip">SAML SSO</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2>Certificates</h2>
+    <ul>
+      <li><a href="https://moonshot.scaler.com/s/sl/ryu3wO7wmA" target="_blank" rel="noopener">Spring Boot — Certified Course for Essential Skills, Scaler</a></li>
+      <li>Getting Started with Artificial Intelligence, MathWorks</li>
+      <li>Front-End Development Libraries, freeCodeCamp</li>
+      <li>MySQL and Database Design, Udemy</li>
+      <li>Machine Learning with Python, IBM (Cognitive Class)</li>
+    </ul>
+    <p class="note">Certificate files are linked on the full resume.</p>
+  </section>
+
+</main>
+
+<footer class="wrap">
+  <div class="foot-row">
+    <span>© <span id="year"></span> Shiva Bollam</span>
+    <span><a href="mailto:shivabollam07@gmail.com">shivabollam07@gmail.com</a></span>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>

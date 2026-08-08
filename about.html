@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About | Shiva Bollam</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <div class="brand">shiva<span>.dev</span></div>
+    <nav class="site-nav">
+      <a href="index.html">Home</a>
+      <a href="about.html" class="active">About</a>
+      <a href="experience.html">Experience</a>
+      <a href="projects.html">Projects</a>
+      <a href="blog.html">Blog</a>
+      <a href="resume.html">Resume</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="eyebrow">About</div>
+  <h1>Who I am</h1>
+
+  <p>
+    I'm a software development engineer at DeepTek.ai, where I've spent the last year and a half
+    building Augmento and Planecone.ai — a radiology AI platform that hospitals use to get faster,
+    AI-assisted reads on imaging studies, including mammography. I joined as an intern in February
+    2025, worked across two of the platform's deployments, and became a full-time engineer that
+    September.
+  </p>
+  <p>
+    Most of what I build sits underneath what a doctor or hospital IT team actually sees: pipelines
+    that move DICOM studies through validation and AI inference, HL7 messaging into hospital
+    systems, high-availability infrastructure so a gateway going down doesn't mean studies get
+    lost, and the alerting that tells us before a customer has to. I like this kind of work because
+    the correctness bar is real — a study that silently fails to process isn't just a bug, it's a
+    scan someone doesn't get a read on. That's part of why I care as much as I do about the boring
+    stuff: retries, logging, race conditions, TAT.
+  </p>
+  <p>
+    Before DeepTek, I studied Computer Science with a focus on AI at Amrita Vishwa Vidyapeetham in
+    Kerala, graduating in 2025. I grew up in Karimnagar, Telangana, and did my schooling there
+    before college.
+  </p>
+
+  <section class="block">
+    <h2>Education</h2>
+
+    <div class="panel">
+      <div class="date">2021 – 2025 · Kollam, Kerala</div>
+      <h3>B.Tech, Computer Science (AI)</h3>
+      <div class="role-org">Amrita Vishwa Vidyapeetham</div>
+      <p>Coursework: Artificial Intelligence, Database Management Systems, Computer Networks, Operating Systems, Object-Oriented Programming, Data Structures &amp; Algorithms.</p>
+    </div>
+
+    <div class="panel">
+      <div class="date">Intermediate</div>
+      <h3>Narayana Junior College</h3>
+      <div class="role-org">937 / 1000 marks</div>
+    </div>
+
+    <div class="panel">
+      <div class="date">10th Grade</div>
+      <h3>Alphores High School</h3>
+      <div class="role-org">9.8 / 10 GPA</div>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2>Outside of work</h2>
+    <p>
+      I play basketball most days — it's one of the few sports you can actually get better at
+      alone — and cricket on weekends, though that one needs at least seven people to be any
+      good. I like traveling and hanging out with friends, watching movies and series, drawing,
+      and picking up new things when I get the time to sit with them properly. If you're
+      wondering, the most used app and website on my phone by a wide margin is ChatGPT.
+    </p>
+    <p>
+      In 2023, I spent a day teaching around 120 school kids the basics of HTML and CSS and
+      talking to them about careers in tech — one of the more rewarding things I've done outside
+      of a job description.
+    </p>
+  </section>
+
+</main>
+
+<footer class="wrap">
+  <div class="foot-row">
+    <span>© <span id="year"></span> Shiva Bollam</span>
+    <span><a href="mailto:shivabollam07@gmail.com">shivabollam07@gmail.com</a></span>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>

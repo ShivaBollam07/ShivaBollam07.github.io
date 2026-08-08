@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Experience | Shiva Bollam</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <div class="brand">shiva<span>.dev</span></div>
+    <nav class="site-nav">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="experience.html" class="active">Experience</a>
+      <a href="projects.html">Projects</a>
+      <a href="blog.html">Blog</a>
+      <a href="resume.html">Resume</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="eyebrow">Experience</div>
+  <h1>Where I've worked</h1>
+  <p>All of it, so far, has been at DeepTek.ai, on Augmento / Planecone.ai — a radiology AI
+    platform used across 500+ hospitals in APAC serving over a million patients a year.</p>
+
+  <div class="panel">
+    <div class="date">Aug 2026 — Present · Pune, India</div>
+    <h3>Software Development Engineer</h3>
+    <div class="role-org">DeepTek.ai</div>
+    <p>
+      Fixed a race condition between NHGP and SGH that was causing studies to intermittently fail
+      to reach the orchestrator, and replaced the surrounding logic with a queue-based system
+      running multiple worker threads so incoming data gets processed reliably under load.
+    </p>
+    <div class="tag-row">
+      <span class="tag">Concurrency</span><span class="tag">Queueing</span><span class="tag">Reliability</span>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="date">Sep 2025 — Jul 2026 · Pune, India</div>
+    <h3>Associate Software Development Engineer</h3>
+    <div class="role-org">DeepTek.ai</div>
+    <p>A year of backend and infrastructure work — filters, integrations, high availability, and a full MMG rollout.</p>
+    <ul>
+      <li>Built study filters and pipeline logic — SHP GP case filter, CT summary-series exclusion, age-specific fracture filter, HPC/NCID filters</li>
+      <li>Cut turnaround time through orchestrator polling changes and a move to queue-based processing</li>
+      <li>Led Gateway high availability — disk-based file storage, persistent disks, MySQL HA, and shared-disk DICOM chunk consolidation</li>
+      <li>Delivered MMG (mammography) integration end-to-end: AI inferencing, image-level finding visualization, density category classification, and the report edit/save/submit workflow</li>
+      <li>Integrated third-party AI results from Koios and Annalise CXR, and built performance reporting around them</li>
+      <li>Owned HL7 messaging updates, SMS notification changes, audit logging, and log rotation across services</li>
+      <li>Onboarded new hospital sites and resolved a run of production issues on the MMG/PACS viewer</li>
+      <li>Upgraded ActiveMQ and improved Azure AD certificate handling</li>
+    </ul>
+    <div class="tag-row">
+      <span class="tag">Java</span><span class="tag">MySQL</span><span class="tag">HL7</span>
+      <span class="tag">DICOM</span><span class="tag">HA architecture</span><span class="tag">SAML</span>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="date">Feb 2025 — Aug 2025 · Pune, India</div>
+    <h3>Software Development Intern</h3>
+    <div class="role-org">DeepTek.ai</div>
+    <p>Collaborated with the Augmento Enterprise and Synapxe teams on healthcare platforms.</p>
+    <ul>
+      <li>Built full-stack features for Augmento Enterprise, used by 500+ hospitals across APAC and over a million patients a year, including a report editor and a dual-monitor clinical view</li>
+      <li>Implemented SAML-based authentication for Synapxe, enabling secure access across 46 hospitals and 1,400+ healthcare partners</li>
+      <li>Built Java-based alerting for service failures, CPU/RAM usage, service start/stop/restart, database storage growth, slow queries, and connectivity failures with external RIS, PACS, and other services — with a parallel path on AWS SNS</li>
+      <li>Built monitoring tools that simulate radiology workflows and track study processing status for hospital IT teams</li>
+    </ul>
+    <div class="tag-row">
+      <span class="tag">React</span><span class="tag">Java</span><span class="tag">SAML</span><span class="tag">AWS SNS</span>
+    </div>
+  </div>
+
+  <p class="note">
+    I also did a few unpaid internships during college, working on frontend and backend projects
+    both inside and outside college, including two mobile apps for tracking energy and water usage
+    with Amrita WNA.
+  </p>
+
+</main>
+
+<footer class="wrap">
+  <div class="foot-row">
+    <span>© <span id="year"></span> Shiva Bollam</span>
+    <span><a href="mailto:shivabollam07@gmail.com">shivabollam07@gmail.com</a></span>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shiva Bollam — Software Development Engineer</title>
+<meta name="description" content="Shiva Bollam builds backend and infrastructure for radiology AI at DeepTek.ai.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <div class="brand">shiva<span>.dev</span></div>
+    <nav class="site-nav">
+      <a href="index.html" class="active">Home</a>
+      <a href="about.html">About</a>
+      <a href="experience.html">Experience</a>
+      <a href="projects.html">Projects</a>
+      <a href="blog.html">Blog</a>
+      <a href="resume.html">Resume</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <div class="hero">
+    <div class="avatar">
+      <img src="https://avatars.githubusercontent.com/u/98306948?v=4"
+           alt="Shiva Bollam"
+           onerror="this.parentElement.textContent='SB'; this.remove();">
+    </div>
+    <div class="hero-text">
+      <h1>Shiva Bollam</h1>
+      <p class="tagline">building backend &amp; infra for radiology AI</p>
+    </div>
+  </div>
+
+  <p>
+    I'm a software development engineer at DeepTek.ai, working on Augmento and
+    Planecone.ai — an AI platform that helps hospitals analyze radiology scans, including
+    mammography, and route them into clinical workflows. I joined as an intern in early 2025
+    and have been on this project ever since, moving from feature work into the backend,
+    integrations, and reliability engineering that keeps it running for hospitals.
+  </p>
+  <p>
+    I care about the parts of a system most people never see: whether a study makes it through
+    the pipeline every single time, whether an alert fires before a doctor notices something is
+    wrong, whether the on-call gets woken up for a real reason. That's mostly what I end up
+    building.
+  </p>
+
+  <div class="status-strip">
+    <div class="status-cell">
+      <div class="k">Role</div>
+      <div class="v">SDE, DeepTek.ai</div>
+    </div>
+    <div class="status-cell">
+      <div class="k">Focus</div>
+      <div class="v">Backend · Infra · HA</div>
+    </div>
+    <div class="status-cell">
+      <div class="k">Stack</div>
+      <div class="v">Java · Spring · AWS</div>
+    </div>
+    <div class="status-cell">
+      <div class="k">Status</div>
+      <div class="v on">Open to interesting problems</div>
+    </div>
+  </div>
+
+  <p>
+    Have a look at <a href="about.html">who I am</a> outside of work, my
+    <a href="experience.html">experience</a> in more detail, what I've
+    <a href="projects.html">built</a>, or my full <a href="resume.html">resume</a>.
+  </p>
+
+  <section class="block">
+    <h2>Recent posts</h2>
+
+    <div class="panel">
+      <div class="date">Oct 2024</div>
+      <h3><a href="https://dev.to/shivabollam07/understanding-the-osi-model-a-step-by-step-breakdown-3np1" target="_blank" rel="noopener">Understanding the OSI Model: A Step-by-Step Breakdown</a></h3>
+    </div>
+
+    <div class="panel">
+      <div class="date">Sep 2024</div>
+      <h3><a href="https://dev.to/shivabollam07/js-vs-jsx-should-you-write-your-react-code-in-jsx-3mp9" target="_blank" rel="noopener">.js vs. .jsx: Should You Write Your React Code in .jsx?</a></h3>
+    </div>
+
+    <p class="more-link"><a href="blog.html">→ all posts</a></p>
+  </section>
+
+</main>
+
+<footer class="wrap">
+  <div class="foot-row">
+    <span>© <span id="year"></span> Shiva Bollam</span>
+    <span><a href="mailto:shivabollam07@gmail.com">shivabollam07@gmail.com</a></span>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projects | Shiva Bollam</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <div class="brand">shiva<span>.dev</span></div>
+    <nav class="site-nav">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="experience.html">Experience</a>
+      <a href="projects.html" class="active">Projects</a>
+      <a href="blog.html">Blog</a>
+      <a href="resume.html">Resume</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="eyebrow">Projects</div>
+  <h1>What I've built</h1>
+
+  <div class="panel">
+    <div class="date">Mar 2022 — Present</div>
+    <h3><a href="https://planecone.netlify.app/" target="_blank" rel="noopener">Planecone.ai</a></h3>
+    <div class="role-org">AI medical imaging platform for mammography</div>
+    <p>
+      An AI-powered platform that analyzes radiology scans and assists doctors in detecting breast
+      cancer from mammography images. It runs an automated pipeline that ingests DICOM studies,
+      validates imaging metadata, and routes them to machine learning models for inference — with a
+      breast cancer detection model trained on the RSNA dataset generating prediction scores across
+      the four standard mammogram views (LCC, RCC, LMLO, RMLO). Clinicians use a web dashboard to
+      upload studies, track AI job status, and generate AI-assisted reports, backed by secure
+      authentication and cloud storage.
+    </p>
+    <div class="tag-row">
+      <span class="tag">React</span><span class="tag">Node.js</span><span class="tag">Python</span>
+      <span class="tag">TensorFlow/PyTorch</span><span class="tag">DICOM</span><span class="tag">MySQL</span>
+      <span class="tag">GCP</span><span class="tag">JWT</span>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="date">Aug 2023 — Sep 2023</div>
+    <h3><a href="https://github.com/SaiNikhil915/Implementation-of-firewall-in-SDN-networks-using-MACHINE-LEARNING" target="_blank" rel="noopener">ML-Based Firewall in SDN</a></h3>
+    <div class="role-org">Detection &amp; mitigation of malicious network traffic</div>
+    <p>
+      A machine-learning firewall for software-defined networks that classifies traffic with a
+      K-Nearest Neighbors model and dynamically blocks malicious IPs through the SDN controller.
+      Validated using Mininet and the Ryu SDN framework.
+    </p>
+    <div class="tag-row">
+      <span class="tag">Python</span><span class="tag">KNN</span><span class="tag">SDN</span>
+      <span class="tag">OpenFlow</span><span class="tag">Mininet</span><span class="tag">Ryu</span>
+    </div>
+  </div>
+
+  <section class="block">
+    <h2>College projects</h2>
+    <div class="panel-grid cols-2">
+      <div class="panel">
+        <h3>Energy Usage Monitoring App</h3>
+        <div class="role-org">Amrita WNA</div>
+        <p>
+          A mobile app tracking energy usage per meter, broken down by location, with charts and
+          numbers aimed at cost and energy savings. Included Google-based login.
+        </p>
+      </div>
+
+      <div class="panel">
+        <h3>Water Usage Monitoring App</h3>
+        <div class="role-org">Amrita WNA</div>
+        <p>
+          The sibling project to the energy app — built the same way, for tracking water usage and
+          consumption across locations.
+        </p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="wrap">
+  <div class="foot-row">
+    <span>© <span id="year"></span> Shiva Bollam</span>
+    <span><a href="mailto:shivabollam07@gmail.com">shivabollam07@gmail.com</a></span>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
