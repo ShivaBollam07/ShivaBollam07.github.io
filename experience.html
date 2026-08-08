@@ -29,7 +29,7 @@
 <main class="wrap">
   <div class="eyebrow">Experience</div>
   <h1>Where I've worked</h1>
-  <p>All of it, so far, has been at DeepTek.ai, on Augmento / Planecone.ai — a radiology AI
+  <p>All of it, so far, has been at DeepTek.ai, on Augmento — a radiology AI
     platform used across 500+ hospitals in APAC serving over a million patients a year.</p>
 
   <div class="panel">
@@ -37,9 +37,8 @@
     <h3>Software Development Engineer</h3>
     <div class="role-org">DeepTek.ai</div>
     <p>
-      Fixed a race condition between NHGP and SGH that was causing studies to intermittently fail
-      to reach the orchestrator, and replaced the surrounding logic with a queue-based system
-      running multiple worker threads so incoming data gets processed reliably under load.
+      Improved reliability across core processing paths by tightening concurrency and queueing
+      behavior so incoming studies are handled consistently even under heavy load.
     </p>
     <div class="tag-row">
       <span class="tag">Concurrency</span><span class="tag">Queueing</span><span class="tag">Reliability</span>
@@ -52,18 +51,18 @@
     <div class="role-org">DeepTek.ai</div>
     <p>A year of backend and infrastructure work — filters, integrations, high availability, and a full MMG rollout.</p>
     <ul>
-      <li>Built study filters and pipeline logic — SHP GP case filter, CT summary-series exclusion, age-specific fracture filter, HPC/NCID filters</li>
-      <li>Cut turnaround time through orchestrator polling changes and a move to queue-based processing</li>
-      <li>Led Gateway high availability — disk-based file storage, persistent disks, MySQL HA, and shared-disk DICOM chunk consolidation</li>
-      <li>Delivered MMG (mammography) integration end-to-end: AI inferencing, image-level finding visualization, density category classification, and the report edit/save/submit workflow</li>
-      <li>Integrated third-party AI results from Koios and Annalise CXR, and built performance reporting around them</li>
-      <li>Owned HL7 messaging updates, SMS notification changes, audit logging, and log rotation across services</li>
-      <li>Onboarded new hospital sites and resolved a run of production issues on the MMG/PACS viewer</li>
-      <li>Upgraded ActiveMQ and improved Azure AD certificate handling</li>
+      <li>Added entry-level filters to control what enters the pipeline and reduce noise in downstream processing</li>
+      <li>Improved turnaround time by adjusting orchestration and queue-based processing for better throughput</li>
+      <li>Led high-availability work on core infrastructure so failures do not mean lost data or interrupted workflows</li>
+      <li>Built end-to-end support for a new imaging modality, including AI results and reporting</li>
+      <li>Integrated multiple third-party AI vendors and built reporting around their performance</li>
+      <li>Improved logging, alerting, and monitoring across services to make incidents easier to detect and diagnose</li>
+      <li>Onboarded new hospital sites and resolved production issues reported by clinical teams</li>
+      <li>Improved service reliability and certificate handling across platform dependencies</li>
     </ul>
     <div class="tag-row">
-      <span class="tag">Java</span><span class="tag">MySQL</span><span class="tag">HL7</span>
-      <span class="tag">DICOM</span><span class="tag">HA architecture</span><span class="tag">SAML</span>
+      <span class="tag">Java</span><span class="tag">MySQL</span><span class="tag">HA architecture</span>
+      <span class="tag">Integrations</span><span class="tag">Monitoring</span><span class="tag">SSO</span>
     </div>
   </div>
 
