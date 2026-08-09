@@ -49,48 +49,26 @@
   <h1>Writing by Shiva Bollam</h1>
   <p>
     I write on <a href="https://dev.to/shivabollam07" target="_blank" rel="noopener">dev.to</a> —
-    23 posts since 2023, mostly on Java, networking, LeetCode write-ups, and web dev.
+    public posts are fetched live from Dev.to and GitHub so the stats stay up to date.
   </p>
-  <p>This blog is maintained by Shiva Bollam, whose professional aliases include Shiva Shankara Varaprasad and Bollam Shiva.</p>
 
-  <div class="panel">
-    <div class="date">Oct 2024</div>
-    <h3><a href="https://dev.to/shivabollam07/understanding-the-osi-model-a-step-by-step-breakdown-3np1" target="_blank" rel="noopener">Understanding the OSI Model: A Step-by-Step Breakdown</a></h3>
-    <div class="tag-row"><span class="tag">networking</span><span class="tag">devops</span></div>
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-label">GitHub</div>
+      <div class="stat-value" id="github-followers">Loading…</div>
+      <div class="stat-meta" id="github-meta">Loading repositories…</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Dev.to</div>
+      <div class="stat-value" id="dev-posts-count">Loading…</div>
+      <div class="stat-meta" id="dev-meta">Loading latest engagement…</div>
+    </div>
   </div>
 
-  <div class="panel">
-    <div class="date">Sep 2024</div>
-    <h3><a href="https://dev.to/shivabollam07/js-vs-jsx-should-you-write-your-react-code-in-jsx-3mp9" target="_blank" rel="noopener">.js vs. .jsx: Should You Write Your React Code in .jsx?</a></h3>
-    <div class="tag-row"><span class="tag">react</span></div>
-  </div>
-
-  <div class="panel">
-    <div class="date">Jul 2024</div>
-    <h3><a href="https://dev.to/shivabollam07/1669-merge-in-between-linked-lists-leetcode-144c" target="_blank" rel="noopener">1669. Merge In Between Linked Lists — LeetCode</a></h3>
-    <div class="tag-row"><span class="tag">leetcode</span></div>
-  </div>
-
-  <div class="panel">
-    <div class="date">Sep 2023</div>
-    <h3><a href="https://dev.to/shivabollam07/solving-all-nodes-distance-k-in-binary-tree-leet-code-question-30if" target="_blank" rel="noopener">Solving "All Nodes Distance K in Binary Tree" — LeetCode</a></h3>
-    <div class="tag-row"><span class="tag">java</span><span class="tag">leetcode</span></div>
-  </div>
-
-  <div class="panel">
-    <div class="date">Sep 2023</div>
-    <h3><a href="https://dev.to/shivabollam07/exploring-java-threading-a-beginners-guide-211m" target="_blank" rel="noopener">Exploring Java Threading: A Beginner's Guide</a></h3>
-    <div class="tag-row"><span class="tag">java</span><span class="tag">concurrency</span></div>
-  </div>
-
-  <div class="panel">
-    <div class="date">Sep 2023</div>
-    <h3><a href="https://dev.to/shivabollam07/why-java-is-an-object-oriented-programming-language-4pgn" target="_blank" rel="noopener">Why Java Is an Object-Oriented Programming Language?</a></h3>
-    <div class="tag-row"><span class="tag">java</span></div>
-  </div>
+  <div id="posts-container" class="posts-container"></div>
 
   <p class="more-link">
-    <a href="https://dev.to/shivabollam07" target="_blank" rel="noopener">→ see all 23 posts on dev.to</a>
+    <a href="https://dev.to/shivabollam07" target="_blank" rel="noopener">→ see all posts on dev.to</a>
   </p>
 
 </main>
@@ -104,6 +82,85 @@
 
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
+
+  const devPostsUrl = 'https://dev.to/api/articles?username=shivabollam07&per_page=20';
+  const githubUserUrl = 'https://api.github.com/users/ShivaBollam07';
+  const postsContainer = document.getElementById('posts-container');
+  const githubFollowersEl = document.getElementById('github-followers');
+  const githubMetaEl = document.getElementById('github-meta');
+  const devPostsCountEl = document.getElementById('dev-posts-count');
+  const devMetaEl = document.getElementById('dev-meta');
+
+  function formatDate(value) {
+    if (!value) return 'Recently published';
+    const date = new Date(value);
+    return date.toLocaleDateString('en', { month: 'short', year: 'numeric' });
+  }
+
+  function renderPosts(posts) {
+    if (!posts || !posts.length) {
+      postsContainer.innerHTML = '<div class="panel"><p>No posts available right now.</p></div>';
+      return;
+    }
+
+    postsContainer.innerHTML = posts.map((post) => {
+      const reactions = post.public_reactions_count ?? post.positive_reactions_count ?? 0;
+      const comments = post.comments_count ?? 0;
+      const views = post.page_views_count ?? null;
+      const tags = (post.tag_list || []).slice(0, 3);
+      const url = post.url || post.canonical_url || 'https://dev.to/shivabollam07';
+
+      return `
+        <div class="panel">
+          <div class="date">${formatDate(post.published_at)}</div>
+          <h3><a href="${url}" target="_blank" rel="noopener">${post.title}</a></h3>
+          <div class="post-meta">
+            <span>Reactions: ${reactions}</span>
+            <span>Comments: ${comments}</span>
+            <span>Views: ${views !== null ? views : 'unavailable'}</span>
+          </div>
+          <div class="tag-row">${tags.map((tag) => `<span class="tag">${tag}</span>`).join('')}</div>
+        </div>
+      `;
+    }).join('');
+  }
+
+  async function loadBlogStats() {
+    try {
+      const [githubResponse, devResponse] = await Promise.all([
+        fetch(githubUserUrl, { headers: { Accept: 'application/vnd.github+json' } }),
+        fetch(devPostsUrl)
+      ]);
+
+      if (githubResponse.ok) {
+        const githubUser = await githubResponse.json();
+        githubFollowersEl.textContent = `${githubUser.followers ?? 0} followers`;
+        githubMetaEl.textContent = `${githubUser.public_repos ?? 0} public repositories`;
+      } else {
+        githubFollowersEl.textContent = 'Unavailable';
+        githubMetaEl.textContent = 'GitHub data unavailable';
+      }
+
+      if (devResponse.ok) {
+        const posts = await devResponse.json();
+        devPostsCountEl.textContent = `${posts.length} posts`;
+        devMetaEl.textContent = 'Latest engagement shown below';
+        renderPosts(posts);
+      } else {
+        devPostsCountEl.textContent = 'Unavailable';
+        devMetaEl.textContent = 'Dev.to data unavailable';
+      }
+    } catch (error) {
+      githubFollowersEl.textContent = 'Unavailable';
+      githubMetaEl.textContent = 'Live data failed to load';
+      devPostsCountEl.textContent = 'Unavailable';
+      devMetaEl.textContent = 'Live data failed to load';
+      postsContainer.innerHTML = '<div class="panel"><p>Live blog stats are temporarily unavailable.</p></div>';
+    }
+  }
+
+  loadBlogStats();
+  setInterval(loadBlogStats, 5 * 60 * 1000);
 </script>
 
 </body>

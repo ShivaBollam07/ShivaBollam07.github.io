@@ -278,6 +278,15 @@ section.block > h2{
 }
 
 .more-link{ font-family:var(--font-mono); font-size:14px; margin-top:6px; }
+.stats-grid{ display:grid; grid-template-columns:1fr; gap:14px; margin:24px 0 18px; }
+@media (min-width:560px){ .stats-grid{ grid-template-columns:1fr 1fr; } }
+.stat-card{ background:var(--panel-2); border:1px solid var(--line); border-radius:var(--radius); padding:16px 18px; }
+.stat-label{ font-family:var(--font-mono); font-size:11px; text-transform:uppercase; letter-spacing:0.08em; color:var(--text-faint); margin-bottom:6px; }
+.stat-value{ font-family:var(--font-display); font-size:18px; color:var(--text); margin-bottom:2px; }
+.stat-meta{ font-size:13px; color:var(--text-dim); }
+.posts-container{ display:flex; flex-direction:column; gap:18px; }
+.post-meta{ display:flex; flex-wrap:wrap; gap:10px; font-family:var(--font-mono); font-size:12px; color:var(--text-faint); margin:8px 0 12px; }
+.post-meta span{ background:rgba(255,255,255,0.04); border:1px solid var(--line); border-radius:999px; padding:4px 8px; }
 
 /* ============================================================
    CONTACT / LINK LIST
