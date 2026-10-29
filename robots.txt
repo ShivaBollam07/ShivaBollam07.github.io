@@ -1,3 +1,0 @@
-User-agent: *
-Allow: /
-Sitemap: https://shivabollam07.github.io/sitemap.xml
