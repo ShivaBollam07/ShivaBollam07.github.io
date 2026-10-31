@@ -1,351 +1,203 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Shiva Bollam</title>
-<meta name="claude:viewport-fit-sides" content="cover">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<meta name="description" content="Shiva Bollam, Software Development Engineer at DeepTek.ai.">
 <style>
-/* Layout: a single-screen PNR enquiry result inside a phone frame. Fixed app header with the PNR, one scroll of railway-style panels: Journey Details, Passenger Details, Train Running Status, Special Trains, Publications, Passenger Preferences, Enquiry. */
 :root{
-  --desk:#DCE2EA; --bg:#F1F3F7; --card:#FFFFFF; --ink:#141C26; --soft:#6B7787; --line:#E4E8EE; --thead:#F5F7FA;
-  --bar:#174A93; --bar2:#123B76; --onbar:#FFFFFF; --accent:#F06A1D; --ok:#138A4A; --okbg:#E3F5EA; --warnbg:#FFF3EA; --chip:#F3F5F8; --link:#174A93;
-  --ui:"Inter Tight",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
-  --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  --bg:#ffffff; --text:#000000; --muted:#5f6670; --line:#d8dce1; --link:#0b5fff;
+  color-scheme:light;
 }
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-  --desk:#05080C; --bg:#0C1117; --card:#151D27; --ink:#E6EBF1; --soft:#8B98A7; --line:#222D3A; --thead:#1A2430;
-  --bar:#143A72; --bar2:#0F2D59; --onbar:#EEF3F9; --accent:#FF8A45; --ok:#47C985; --okbg:#10291C; --warnbg:#251A10; --chip:#1B2531; --link:#8DB8F0; color-scheme:dark}}
-:root[data-theme="dark"]{--desk:#05080C; --bg:#0C1117; --card:#151D27; --ink:#E6EBF1; --soft:#8B98A7; --line:#222D3A; --thead:#1A2430;
-  --bar:#143A72; --bar2:#0F2D59; --onbar:#EEF3F9; --accent:#FF8A45; --ok:#47C985; --okbg:#10291C; --warnbg:#251A10; --chip:#1B2531; --link:#8DB8F0; color-scheme:dark}
-
-html,body{height:100%}
-body{background:var(--desk);color:var(--ink);font-family:var(--ui);font-size:14.5px;line-height:1.55;display:flex;justify-content:center;align-items:center;
-  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:24px}
-a{color:inherit}
-:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:6px}
-
-.phone{width:410px;max-width:100%;height:min(880px,100%);background:var(--bg);border-radius:34px;overflow:hidden;display:flex;flex-direction:column;
-  box-shadow:0 0 0 10px #10161E,0 30px 60px -20px rgba(0,0,0,.45)}
-.sbar{background:var(--bar2);color:var(--onbar);display:flex;justify-content:space-between;align-items:center;padding:10px 26px 4px;font-size:13px;font-weight:600}
-.sbar span:last-child{display:flex;gap:6px;align-items:center}
-.sbar svg{width:16px;height:12px;fill:currentColor}
-@media (max-width:520px){
-  body{padding:0;align-items:stretch}
-  .phone{width:100%;height:100%;border-radius:0;box-shadow:none}
-  .sbar{display:none}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{
+  margin:0; background:var(--bg); color:var(--text);
+  font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  padding:32px max(20px,env(safe-area-inset-right)) 80px max(20px,env(safe-area-inset-left));
 }
+main,.nav{max-width:660px;margin:0 auto}
+a{color:var(--link);text-decoration:none}
+a:hover{text-decoration:underline}
+:focus-visible{outline:2px solid var(--link);outline-offset:2px;border-radius:2px}
 
-.head{background:linear-gradient(var(--bar2),var(--bar));color:var(--onbar);padding:14px 18px 16px;display:flex;flex-direction:column;gap:12px}
-.head h1{margin:0;font-size:17px;font-weight:700}
-.pnr{background:rgba(255,255,255,.12);border-radius:12px;padding:10px 14px;display:flex;justify-content:space-between;align-items:center;gap:10px}
-.pnr small{display:block;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;opacity:.75}
-.pnr b{font-family:var(--mono);font-size:18px;font-weight:600;letter-spacing:.08em}
-.pnr .key{font-family:var(--mono);font-size:10.5px;opacity:.8;text-align:right;line-height:1.5}
+.nav{display:flex;gap:20px;flex-wrap:wrap;padding-bottom:14px;border-bottom:1px solid var(--line)}
 
-.scroll{flex:1;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin}
-.inner{padding:14px max(14px,env(safe-area-inset-left,0px)) 28px max(14px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:14px}
+h1{font-size:32px;line-height:1.2;margin:40px 0 4px;font-weight:700}
+.tagline{margin:0 0 16px;color:var(--muted);font-size:18px}
+.intro{margin:0}
 
-.panel{background:var(--card);border-radius:14px;overflow:hidden}
-.ph{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:11px 14px;background:var(--thead);border-bottom:1px solid var(--line)}
-.ph h2{margin:0;font-size:13px;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
-.ph span{font-family:var(--mono);font-size:10.5px;color:var(--soft)}
-.pb{padding:14px}
+h2{font-size:22px;font-weight:700;margin:52px 0 20px;padding-bottom:8px;border-bottom:1px solid var(--line);scroll-margin-top:16px}
 
-/* journey details */
-.trainrow{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-.tno{font-family:var(--mono);font-size:12px;font-weight:600;color:var(--onbar);background:var(--bar);padding:2px 7px;border-radius:5px}
-.tname{font-weight:800;font-size:15px;letter-spacing:.02em}
-.run{margin-left:auto;font-size:11px;font-weight:700;color:var(--ok);background:var(--okbg);padding:3px 9px;border-radius:999px}
-.route{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:12px;align-items:center;margin:16px 0 4px}
-.rs b{display:block;font-size:28px;font-weight:800;line-height:1}
-.rs span{display:block;font-size:11.5px;color:var(--soft);margin-top:4px}
-.rs.r{text-align:right}
-.rs.r b{color:var(--soft)}
-.rs .tag{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--soft);margin:0 0 4px}
-.mid{display:flex;flex-direction:column;align-items:center;gap:6px;font-family:var(--mono);font-size:10.5px;color:var(--soft);white-space:nowrap}
-.mid .rline{width:100%}
-.rline{position:relative;height:2px;background:repeating-linear-gradient(90deg,var(--line) 0 5px,transparent 5px 9px)}
-.rline::before{content:"";position:absolute;inset:0 45% 0 0;background:var(--bar)}
-.rline::after{content:"";position:absolute;left:55%;top:50%;width:10px;height:10px;margin:-5px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 25%,transparent)}
-.kvg{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 14px;margin-top:14px;padding-top:14px;border-top:1px dashed var(--line)}
-.kvg small{display:block;font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--soft);font-weight:600}
-.kvg b{font-size:13.5px;font-weight:700}
+.item{margin-bottom:28px}
+.item h3{font-size:16.5px;font-weight:700;margin:0}
+.item .meta{margin:0 0 8px;color:var(--muted);font-size:14.5px}
+.item p{margin:0 0 8px}
+.item ul{margin:0 0 8px;padding-left:20px}
+.item li{margin:3px 0}
+.stack{color:var(--muted);font-size:14.5px}
+.stack b{font-weight:600}
 
-table{width:100%;border-collapse:collapse;font-size:13px}
-th{font-size:10px;letter-spacing:.07em;text-transform:uppercase;color:var(--soft);font-weight:600;text-align:left;padding:9px 8px;background:var(--thead);border-bottom:1px solid var(--line)}
-td{padding:11px 8px;vertical-align:top;border-bottom:1px solid var(--line)}
-tr:last-child td{border-bottom:0}
-td small{display:block;color:var(--soft);font-size:11.5px}
-.cnf{font-family:var(--mono);font-weight:600;color:var(--ok)}
-.wl{font-family:var(--mono);font-weight:600;color:var(--soft)}
-.chart{display:flex;align-items:center;gap:8px;padding:10px 14px;background:var(--okbg);color:var(--ok);font-weight:700;font-size:12.5px}
-
-.coaches{display:flex;gap:4px;margin-top:2px}
-.coach{flex:1 1 0;min-width:0;height:32px;border-radius:6px;border:1.5px solid var(--line);display:grid;place-items:center;font-family:var(--mono);font-size:9.5px;font-weight:600;color:var(--soft)}
-.coach.eng{border-radius:6px 14px 6px 6px;background:var(--bar);border-color:var(--bar);color:var(--onbar)}
-.coach.you{background:var(--accent);border-color:var(--accent);color:#fff}
-.note{font-size:11.5px;color:var(--soft);margin:8px 0 0}
-
-/* running status */
-.now{display:flex;gap:10px;align-items:center;padding:11px 14px;background:var(--warnbg);border-bottom:1px solid var(--line)}
-.now b{font-size:13.5px}
-.now span{font-size:12px;color:var(--soft)}
-.now em{margin-left:auto;font-style:normal;font-size:11px;font-weight:700;color:var(--ok);background:var(--okbg);padding:3px 9px;border-radius:999px;white-space:nowrap}
-.cols{display:grid;grid-template-columns:20px minmax(0,1fr) 50px 50px;gap:10px;padding:8px 14px;font-size:10px;letter-spacing:.07em;text-transform:uppercase;color:var(--soft);font-weight:600;background:var(--thead);border-bottom:1px solid var(--line)}
-.cols span:nth-child(n+3){text-align:right}
-.stn summary{list-style:none;display:grid;grid-template-columns:20px minmax(0,1fr) 50px 50px;gap:10px;align-items:center;padding:14px;cursor:pointer}
-.stn summary::-webkit-details-marker{display:none}
-.stn summary:hover .sn b{color:var(--link)}
-.stn + .stn summary{border-top:1px solid var(--line)}
-.rail{position:relative;align-self:stretch;display:flex;justify-content:center}
-.rail::before{content:"";position:absolute;top:-15px;bottom:-15px;width:3px;background:var(--bar)}
-.stn.src summary .rail::before{bottom:50%}
-.stn.src .body .rail::before{display:none}
-.stn.cur summary .rail::before{top:50%}
-.stn.next summary .rail::before{bottom:50%;background:repeating-linear-gradient(var(--soft) 0 3px,transparent 3px 7px)}
-.dot{position:relative;z-index:1;align-self:center;width:12px;height:12px;border-radius:50%;background:var(--bar);border:3px solid var(--bar)}
-.stn.next .dot{background:var(--card);border:2px dashed var(--soft)}
-.stn.cur summary,.stn.cur .body{background:var(--warnbg)}
-.stn.cur .dot{width:20px;height:20px;border:0;background:var(--accent);box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 25%,transparent)}
-.stn.next .rail{}
-.sn{min-width:0}
-.sn i{display:block;font-style:normal;font-family:var(--mono);font-size:10px;color:var(--soft);letter-spacing:.06em}
-.sn b{display:flex;align-items:center;gap:6px;font-size:14.5px;font-weight:700;line-height:1.3}
-.sn b::after{content:"\203A";font-weight:400;color:var(--soft);transition:transform .2s}
-.stn[open] .sn b::after{transform:rotate(90deg)}
-.sn span{display:block;font-size:11.5px;font-weight:600;color:var(--soft)}
-.stn.cur .sn i,.stn.cur .sn span{color:var(--accent)}
-.stn.next .sn span{color:var(--ok)}
-.tm{font-family:var(--mono);font-size:11px;text-align:right;line-height:1.3}
-.tm.d{color:var(--soft)}
-.body{display:grid;grid-template-columns:20px minmax(0,1fr);gap:10px;padding:0 14px 16px}
-.body .rail::before{top:0;bottom:0}
-.stn.next .body .rail::before{display:none}
-.dt{display:flex;flex-direction:column;gap:9px;font-size:13px;min-width:0;border-left:2px solid var(--line);padding-left:12px}
-.dt h4{margin:0;font-size:13.5px;font-weight:700}
-.dt h4 small{font-family:var(--mono);font-weight:500;font-size:10.5px;color:var(--soft);margin-left:6px}
-.dt h4 + *{margin-top:-4px}
-.dt .role + .role{border-top:1px dashed var(--line);padding-top:10px}
-.dt .role{display:flex;flex-direction:column;gap:7px}
-.dt p{margin:0}
-.dt ul{margin:0;padding-left:16px;display:flex;flex-direction:column;gap:5px}
-.dt li::marker{color:var(--soft)}
-.chips{display:flex;flex-wrap:wrap;gap:5px}
-.chips span{font-family:var(--mono);font-size:10.5px;font-weight:500;padding:2px 7px;border-radius:6px;background:var(--chip);color:var(--soft);border:1px solid var(--line)}
-.grade{font-family:var(--mono);font-size:11.5px;font-weight:600;color:var(--ok);background:var(--okbg);padding:1px 7px;border-radius:5px}
-.tapnote{margin:0;padding:10px 14px 14px;font-size:11.5px;color:var(--soft);border-top:1px solid var(--line)}
-.rac{display:flex;align-items:center;gap:10px;background:var(--warnbg);border-radius:10px;padding:10px 12px;font-size:13px}
-.rac b{font-family:var(--mono);color:var(--accent);font-size:13px;white-space:nowrap}
-
-/* special trains */
-.svc{padding:14px;display:flex;flex-direction:column;gap:10px}
-.svc + .svc{border-top:1px solid var(--line)}
-.svc header{display:flex;justify-content:space-between;align-items:baseline;gap:4px 10px;flex-wrap:wrap}
-.svc h3{margin:0;font-size:15.5px;font-weight:800}
-.svc header span{font-family:var(--mono);font-size:10.5px;color:var(--soft)}
-.svc p{margin:0;font-size:13.5px}
-.svc ul{margin:0;padding-left:16px;display:flex;flex-direction:column;gap:5px;font-size:13px}
-.stat{display:flex;align-items:center;gap:12px;background:var(--okbg);border-radius:10px;padding:9px 12px}
-.stat b{font-size:22px;font-weight:800;color:var(--ok);line-height:1}
-.stat span{font-size:12.5px}
-.plink{font-weight:700;font-size:13px;color:var(--link);text-decoration:none}
-.plink:hover{text-decoration:underline}
-.lbl{font-size:10px;letter-spacing:.07em;text-transform:uppercase;color:var(--soft);font-weight:600;margin:0 0 -4px!important}
-
-/* publications */
-.pubs a{display:flex;justify-content:space-between;gap:12px;padding:12px 14px;text-decoration:none;font-size:13.5px;font-weight:600}
-.pubs a + a{border-top:1px solid var(--line)}
-.pubs a:hover{color:var(--link)}
-.pubs span{font-family:var(--mono);font-size:11px;color:var(--soft);font-weight:400;white-space:nowrap}
-
-/* preferences */
-.prefs{padding:14px;display:flex;flex-direction:column;gap:10px}
-.prefs p{margin:0;font-size:13.5px}
-.quote{font-size:15px!important;font-weight:700;border-left:3px solid var(--accent);padding-left:12px}
-.kvs{display:grid;grid-template-columns:90px minmax(0,1fr);gap:8px 12px;font-size:13px;padding-top:12px;margin:2px 0 0;border-top:1px dashed var(--line)}
-.kvs dt{color:var(--soft);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;font-weight:600;padding-top:2px}
-.kvs dd{margin:0}
-
-/* enquiry */
-.enq{padding:14px;display:flex;flex-direction:column;gap:10px}
-.mail{display:flex;align-items:center;justify-content:space-between;gap:10px;background:var(--chip);border-radius:10px;padding:10px 12px;font-family:var(--mono);font-size:13px}
-.mail code{font-family:inherit;user-select:all;overflow-wrap:anywhere}
-.btns{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.cbtn{display:flex;align-items:center;justify-content:center;gap:8px;font-weight:700;font-size:13.5px;padding:11px;border-radius:10px;text-decoration:none;border:1px solid var(--line);background:var(--card);cursor:pointer;font-family:var(--ui);color:var(--ink)}
-.cbtn:hover{border-color:var(--soft)}
-.cbtn svg{width:16px;height:16px;fill:currentColor}
-.cbtn.li{grid-column:1/-1;background:#0A66C2;border-color:#0A66C2;color:#fff}
-.cbtn.mailbtn{grid-column:1/-1;background:var(--accent);border-color:var(--accent);color:#fff}
-.foot{text-align:center;font-family:var(--mono);font-size:10.5px;color:var(--soft);margin:4px 0 0}
+.posts{list-style:none;padding:0;margin:0}
+.posts li{margin:0 0 14px}
+.posts .date{display:block;color:var(--muted);font-size:14.5px}
 </style>
+</head>
+<body>
 
-<div class="phone">
-  <div class="sbar" aria-hidden="true"><span id="clock">9:41</span><span><svg viewBox="0 0 16 12"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="4.5" y="5" width="3" height="7" rx="1"/><rect x="9" y="2" width="3" height="10" rx="1"/><rect x="13" y="0" width="3" height="12" rx="1" opacity=".4"/></svg><svg viewBox="0 0 24 12"><rect x=".5" y=".5" width="20" height="11" rx="3" fill="none" stroke="currentColor"/><rect x="2.5" y="2.5" width="13" height="7" rx="1.5"/><rect x="21.5" y="4" width="2" height="4" rx="1"/></svg></span></div>
+<nav class="nav">
+  <a href="#work">Work</a>
+  <a href="#projects">Projects</a>
+  <a href="#writing">Writing</a>
+  <a href="#education">Education</a>
+  <a href="#contact">Contact</a>
+  <a href="https://drive.google.com/file/d/182ART_bY3NYrq43j4HoFmFpjrq2p7kBx/view?usp=drivesdk">CV</a>
+</nav>
 
-  <header class="head">
-    <h1>PNR Enquiry · Result</h1>
-    <div class="pnr">
-      <div><small>PNR No.</small><b>2019 2021 25</b></div>
-      <div class="key">School 2019<br>Intermediate 2021<br>B.Tech 2025</div>
-    </div>
-  </header>
+<main>
 
-  <main class="scroll">
-    <div class="inner">
+<h1>Shiva Bollam</h1>
+<p class="tagline">Software Development Engineer at DeepTek.ai, Pune</p>
+<p class="intro">I build software in Java and React, and I contribute to open source. I write about what I learn on <a href="https://dev.to/shivabollam07">dev.to</a>.</p>
 
-      <section class="panel" aria-labelledby="h-jd">
-        <div class="ph"><h2 id="h-jd">Journey Details</h2><span id="upd">Last updated: now</span></div>
-        <div class="pb">
-          <div class="trainrow"><span class="tno">02025</span><span class="tname">SHIVA BOLLAM EXP</span><span class="run">Running</span></div>
-          <div class="route">
-            <div class="rs"><span class="tag">Dep</span><b>PUNE</b><span>Feb 2025</span></div>
-            <div class="mid"><div class="rline" aria-hidden="true"></div><span id="dur">Journey time</span></div>
-            <div class="rs r"><span class="tag">Arr</span><b>????</b><span>TBA</span></div>
-          </div>
-          <div class="kvg">
-            <div><small>Class</small><b>SDE</b></div>
-            <div><small>Quota</small><b>General</b></div>
-            <div><small>Boarding at</small><b>PUNE</b></div>
-            <div><small>Reservation upto</small><b>Not decided</b></div>
-          </div>
-        </div>
-      </section>
+<section id="work">
+  <h2>Work</h2>
 
-      <section class="panel" aria-labelledby="h-pd">
-        <div class="ph"><h2 id="h-pd">Passenger Details</h2><span>1 passenger</span></div>
-        <table>
-          <thead><tr><th>Passenger</th><th>Booking status</th><th>Current status</th><th>Coach</th></tr></thead>
-          <tbody><tr>
-            <td><b>Shiva Bollam</b><small>Passenger 1</small></td>
-            <td><span class="wl">Intern</span><small>Feb 2025</small></td>
-            <td><span class="cnf">CNF / SDE</span><small>Confirmed</small></td>
-            <td><b>DTK</b><small>DeepTek.ai</small></td>
-          </tr></tbody>
-        </table>
-        <div class="chart">✓ Charting status: Chart prepared</div>
-        <div class="pb">
-          <p class="lbl" style="margin-bottom:8px!important">Coach position</p>
-          <div class="coaches"><span class="coach">ALPH</span><span class="coach">NRYN</span><span class="coach">AMRT</span><span class="coach">AIOT</span><span class="coach">TCL</span><span class="coach you">DTK</span><span class="coach eng">ENG</span></div>
-          <p class="note">Current coach: DTK (DeepTek.ai)</p>
-        </div>
-      </section>
+  <div class="item">
+    <h3>Software Development Engineer</h3>
+    <p class="meta">DeepTek.ai · Aug 2026 – now</p>
+    <ul>
+      <li>Rebuilt high-volume processing around queues and parallel worker threads, making it more reliable and consistent.</li>
+      <li>Own production-critical fixes across several customer deployments, finding the root cause before fixing.</li>
+      <li>Improved performance and scalability with better database queries and data processing.</li>
+      <li>Extended reporting and data extraction for changing customer and operations needs.</li>
+      <li>Improved security by handling sensitive configuration data safely.</li>
+    </ul>
+    <p class="stack"><b>Tech:</b> Java, Spring Boot, multithreading, queues, MySQL, PostgreSQL</p>
+  </div>
 
-      <section class="panel" aria-labelledby="h-rs">
-        <div class="ph"><h2 id="h-rs">Train Running Status</h2><span>Latest first</span></div>
-        <div class="now"><div><b>Currently at DeepTek.ai</b><br><span id="since">Running since Feb 2025</span></div><em>On time</em></div>
-        <div class="cols" aria-hidden="true"><span></span><span>Station</span><span>Arr.</span><span>Dep.</span></div>
-        <details class="stn cur" open>
-          <summary><span class="rail"><span class="dot"></span></span><span class="sn"><i>DTK · CURRENT</i><b>DeepTek.ai</b><span>Train is here</span></span><span class="tm">Feb 25</span><span class="tm d">—</span></summary>
-          <div class="body"><span class="rail"></span><div class="dt"><div class="role"><h4>Software Development Engineer<small>Aug 2026 – now</small></h4><ul><li>Rebuilt high-volume processing around queues and parallel worker threads, making it more reliable and consistent.</li><li>Own production-critical fixes across several customer deployments, finding the root cause before fixing.</li><li>Improved performance and scalability with better database queries and data processing.</li><li>Extended reporting and data extraction for changing customer and operations needs.</li><li>Improved security by handling sensitive configuration data safely.</li></ul><div class="chips"><span>Java</span><span>Spring Boot</span><span>Multithreading</span><span>Queues</span><span>MySQL</span><span>PostgreSQL</span></div></div><div class="role"><h4>Associate SDE<small>Sep 2025 – Jul 2026</small></h4><ul><li>Shipped features across Augmento: filtering, reporting, messaging and workflow.</li><li>Built high availability for critical services with shared storage and database failover.</li><li>Owned the mammography workflow end to end: AI results, image viewing, reports, and production issues.</li><li>Integrated third-party healthcare systems, and improved logging, monitoring, audit trails and report extraction.</li></ul><div class="chips"><span>Java</span><span>Spring Boot</span><span>React</span><span>MySQL</span><span>Database HA</span><span>Linux</span></div></div><div class="role"><h4>Software Development Intern<small>Feb – Aug 2025</small></h4><ul><li>Built full-stack features for Augmento Enterprise, including multi-monitor viewing and better reporting.</li><li>Added SAML sign-in, and Java-based health checks for the app, infrastructure, database and services.</li><li>Set up AWS alerts that catch processing failures and infrastructure issues early.</li></ul><div class="chips"><span>Java</span><span>React</span><span>SAML</span><span>AWS SNS</span><span>Lambda</span><span>CloudWatch</span></div></div></div></div>
-        </details>
-        <details class="stn ">
-          <summary><span class="rail"><span class="dot"></span></span><span class="sn"><i>TCL</i><b>Tecell</b><span>Departed</span></span><span class="tm">Jan 25</span><span class="tm">Jan 25</span></summary>
-          <div class="body"><span class="rail"></span><div class="dt"><h4>Node.js · EV systems</h4><p>Worked with Node.js and learned a lot about how EV machines work. I learned so much there that I probably owe Tecell a stipend.</p><div class="chips"><span>Node.js</span><span>JavaScript</span><span>EV systems</span></div></div></div>
-        </details>
-        <details class="stn ">
-          <summary><span class="rail"><span class="dot"></span></span><span class="sn"><i>AIOT</i><b>Amrita IoT Lab</b><span>Departed</span></span><span class="tm">Mar 23</span><span class="tm">Sep 23</span></summary>
-          <div class="body"><span class="rail"></span><div class="dt"><h4>Developer · IoT smart meters</h4><p>Worked with the university's senior management on two campus systems.</p><ul><li><b>Energy meter:</b> reads data from sensors, shows consumption, flags overuse, suggests precautions, and signals the sensors to cut the main supply when the limit is crossed.</li><li><b>Water meter:</b> doctors enter the chemicals found in water samples. The app estimates how pure the water is, stores it, and shows which chemical to add and how much.</li></ul><div class="chips"><span>IoT</span><span>Sensors</span><span>Electrical systems</span><span>Dashboards</span></div></div></div>
-        </details>
-        <details class="stn ">
-          <summary><span class="rail"><span class="dot"></span></span><span class="sn"><i>AMRT</i><b>Amrita Vishwa Vidyapeetham</b><span>Departed</span></span><span class="tm">2021</span><span class="tm">2025</span></summary>
-          <div class="body"><span class="rail"></span><div class="dt"><h4>B.Tech · Computer Science (AI)</h4><p>Learned operating systems, databases, networks, OOP, Java, and data structures and algorithms. Also learned how to present and how to take ownership of my work.</p><div class="chips"><span>OS</span><span>DBMS</span><span>Networks</span><span>Java</span><span>DSA</span><span>Presentation</span></div></div></div>
-        </details>
-        <details class="stn ">
-          <summary><span class="rail"><span class="dot"></span></span><span class="sn"><i>NRYN</i><b>Narayana</b><span>Departed</span></span><span class="tm">2019</span><span class="tm">2021</span></summary>
-          <div class="body"><span class="rail"></span><div class="dt"><h4>Intermediate · MPC</h4><p>Maths, physics and chemistry. Finished with <span class="grade">93.7%</span></p><p>One of the two years was spent at home because of the lockdown. The other year taught me a lot, in studies and as a person.</p><div class="chips"><span>Maths</span><span>Physics</span><span>Chemistry</span><span>Self-study</span></div></div></div>
-        </details>
-        <details class="stn src">
-          <summary><span class="rail"><span class="dot"></span></span><span class="sn"><i>ALPH · SOURCE</i><b>Alphores Gurukula</b><span>Departed</span></span><span class="tm">2016</span><span class="tm">2019</span></summary>
-          <div class="body"><span class="rail"></span><div class="dt"><h4>Schooling</h4><p>Completed with <span class="grade">9.8 GPA</span></p><ul><li>Won multiple gold and silver medals in SOF Olympiad competitions.</li><li>Took part in speech competitions and gave talks on stage.</li></ul><div class="chips"><span>Public speaking</span><span>Olympiads</span></div></div></div>
-        </details>
-        <p class="tapnote">Tap any station to see the full details.</p>
-      </section>
+  <div class="item">
+    <h3>Associate Software Development Engineer</h3>
+    <p class="meta">DeepTek.ai · Sep 2025 – Jul 2026</p>
+    <ul>
+      <li>Shipped features across Augmento: filtering, reporting, messaging and workflow.</li>
+      <li>Built high availability for critical services with shared storage and database failover.</li>
+      <li>Owned the mammography workflow end to end: AI results, image viewing, reports and production issues.</li>
+      <li>Integrated third-party healthcare systems, and improved logging, monitoring, audit trails and report extraction.</li>
+    </ul>
+    <p class="stack"><b>Tech:</b> Java, Spring Boot, React, MySQL, database high availability, Linux</p>
+  </div>
 
-      <section class="panel" aria-labelledby="h-st">
-        <div class="ph"><h2 id="h-st">Special Trains</h2><span>Projects</span></div>
-        <article class="svc">
-          <header><h3>PlaneCone.ai</h3><span>Jul 2026 – now</span></header>
-          <p>An AI platform that helps doctors detect breast cancer in mammograms.</p>
-          <div class="stat"><b>100K+</b><span>in combined API credits received from different programs</span></div>
-          <ul>
-            <li>A pipeline that takes DICOM scans, checks their metadata, and sends each study to the model.</li>
-            <li>A detection model trained on the RSNA dataset that scores all four views: LCC, RCC, LMLO and RMLO.</li>
-            <li>A dashboard where doctors upload studies, follow each AI job, and get a draft report.</li>
-            <li>Secure sign-in and cloud storage for scans and reports.</li>
-          </ul>
-          <p class="lbl">Skills used</p>
-          <div class="chips"><span>React</span><span>Node.js</span><span>Python</span><span>TensorFlow</span><span>PyTorch</span><span>DICOM</span><span>MySQL</span><span>Google Cloud</span><span>JWT</span></div>
-          <a class="plink" href="https://planeconeai-frontend.planecone-ai.workers.dev/">planecone.ai ↗</a>
-        </article>
-        <article class="svc">
-          <header><h3>DICOM extensions</h3><span>VS Code &amp; Antigravity</span></header>
-          <p>DICOM analysis tools and other extensions that let developers open and inspect medical scans inside their code editor.</p>
-          <div class="stat"><b>10K+</b><span>downloads. People I've never met raise tickets on it.</span></div>
-          <p class="lbl">Skills used</p>
-          <div class="chips"><span>JavaScript</span><span>VS Code Extension API</span><span>DICOM</span><span>Open source</span></div>
-          <a class="plink" href="https://open-vsx.org/extension/shivabollam07/dicom-viewer">Open VSX ↗</a>
-        </article>
-      </section>
+  <div class="item">
+    <h3>Software Development Intern</h3>
+    <p class="meta">DeepTek.ai · Feb – Aug 2025</p>
+    <ul>
+      <li>Built full-stack features for Augmento Enterprise, including multi-monitor viewing and better reporting.</li>
+      <li>Added SAML sign-in, and Java-based health checks for the app, infrastructure, database and services.</li>
+      <li>Set up AWS alerts that catch processing failures and infrastructure issues early.</li>
+    </ul>
+    <p class="stack"><b>Tech:</b> Java, React, SAML, AWS SNS, Lambda, CloudWatch</p>
+  </div>
 
-      <section class="panel" aria-labelledby="h-pub">
-        <div class="ph"><h2 id="h-pub">Publications</h2><span>23 on dev.to</span></div>
-        <div class="pubs">
-          <a href="https://dev.to/shivabollam07/understanding-the-osi-model-a-step-by-step-breakdown-3np1">Understanding the OSI model, step by step<span>Oct 24</span></a>
-          <a href="https://dev.to/shivabollam07/js-vs-jsx-should-you-write-your-react-code-in-jsx-3mp9">.js vs .jsx: which should you use?<span>Sep 24</span></a>
-          <a href="https://dev.to/shivabollam07/what-happens-when-we-run-a-java-code-1p8i">What happens when we run a .java file?<span>Aug 23</span></a>
-          <a href="https://dev.to/shivabollam07/exploring-java-threading-a-beginners-guide-211m">Exploring Java threading<span>Sep 23</span></a>
-        </div>
-      </section>
+  <div class="item">
+    <h3>Node.js Developer</h3>
+    <p class="meta">Tecell · Jan 2025</p>
+    <p>Worked with Node.js on EV systems and learned how EV machines work.</p>
+    <p class="stack"><b>Tech:</b> Node.js, JavaScript</p>
+  </div>
 
-      <section class="panel" aria-labelledby="h-pp">
-        <div class="ph"><h2 id="h-pp">Passenger Preferences</h2><span>Outside work</span></div>
-        <div class="prefs">
-          <p>I play basketball, listen to music, and sometimes stare at a wall for two hours straight.</p>
-          <p>I'm interested in tech and business, and I like learning every kind of skill, even ones I don't use.</p>
-          <p class="quote">Being able to do something is an art, and a blessing.</p>
-          <dl class="kvs">
-            <dt>Skills</dt><dd>Java, Spring Boot, Hibernate, React, Node.js, Express, MySQL, PostgreSQL, MongoDB, AWS, Git, Linux</dd>
-            <dt>Interests</dt><dd>Technology, business, learning new skills</dd>
-            <dt>Hobbies</dt><dd>Basketball, music</dd>
-          </dl>
-        </div>
-      </section>
+  <div class="item">
+    <h3>Developer</h3>
+    <p class="meta">Amrita IoT Lab · Mar – Sep 2023</p>
+    <p>Built two campus systems for the university's senior management.</p>
+    <ul>
+      <li>Energy meter: reads sensor data, shows consumption, flags overuse, suggests precautions, and signals the sensors to cut the main supply when the limit is crossed.</li>
+      <li>Water meter: doctors enter the chemicals found in water samples. The app estimates how pure the water is, stores it, and shows which chemical to add and how much.</li>
+    </ul>
+    <p class="stack"><b>Tech:</b> IoT, sensors, dashboards</p>
+  </div>
+</section>
 
-      <section class="panel" aria-labelledby="h-eq">
-        <div class="ph"><h2 id="h-eq">Enquiry · Book Next Journey</h2><span>Contact</span></div>
-        <div class="enq">
-          <div class="rac"><b>RAC OK</b><span>Not picky about the seat. Even a half seat works, so reach out.</span></div>
-          <div class="mail"><code id="email">shivabollam07@gmail.com</code></div>
-          <div class="btns">
-            <a class="cbtn li js-li" href="https://www.linkedin.com/search/results/people/?keywords=Bollam%20Shiva"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05C20.6 8.65 21 11.2 21 14.5V21h-4v-5.8c0-1.4-.03-3.2-1.95-3.2-1.95 0-2.25 1.52-2.25 3.1V21H9z"/></svg>Connect on LinkedIn</a>
-            <button class="cbtn mailbtn" type="button" id="copymail">Copy email</button>
-            <a class="cbtn" href="https://drive.google.com/file/d/182ART_bY3NYrq43j4HoFmFpjrq2p7kBx/view?usp=drivesdk">CV ↗</a>
-            <a class="cbtn" href="https://github.com/ShivaBollam07">GitHub</a>
-            <a class="cbtn" href="https://dev.to/shivabollam07">dev.to</a>
-            <a class="cbtn" href="https://leetcode.com/u/shivabollam07/">LeetCode</a>
-          </div>
-        </div>
-      </section>
+<section id="projects">
+  <h2>Projects</h2>
 
-      <p class="foot">PNR 2019 2021 25 · Shiva Bollam</p>
-    </div>
-  </main>
-</div>
+  <div class="item">
+    <h3><a href="https://github.com/Project-MONAI">MONAI</a></h3>
+    <p class="meta">Open source · Ongoing</p>
+    <p>I contribute to MONAI, an open-source AI framework for medical imaging.</p>
+  </div>
 
-<script>
-(function(){
-  var b=document.getElementById('copymail'),el=document.getElementById('email');
-  b.addEventListener('click',function(){
-    function done(){b.textContent='Email copied';setTimeout(function(){b.textContent='Copy email'},1500)}
-    function fb(){var r=document.createRange();r.selectNodeContents(el);var s=getSelection();s.removeAllRanges();s.addRange(r)}
-    try{navigator.clipboard.writeText(el.textContent).then(done,fb)}catch(_){fb()}
-  });
-  var d=new Date(), mo=(d.getFullYear()-2025)*12+(d.getMonth()-1), y=Math.floor(mo/12), m=mo%12;
-  document.getElementById('dur').textContent=(y?y+'y ':'')+m+'m on board';
-  document.getElementById('upd').textContent='Last updated: '+String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0');
-  var clock=document.getElementById('clock');
-  function tick(){var t=new Date();clock.textContent=(t.getHours()%12||12)+':'+String(t.getMinutes()).padStart(2,'0')}
-  tick();setInterval(tick,20000);
-})();
-</script>
+  <div class="item">
+    <h3><a href="https://planeconeai-frontend.planecone-ai.workers.dev/">PlaneCone.ai</a></h3>
+    <p class="meta">Jul 2026 – now</p>
+    <p>An AI platform that helps doctors detect breast cancer in mammograms. Received over $100K in combined API credits from different programs.</p>
+    <ul>
+      <li>A pipeline that takes DICOM scans, checks their metadata, and sends each study to the model.</li>
+      <li>A detection model trained on the RSNA dataset that scores all four views: LCC, RCC, LMLO and RMLO.</li>
+      <li>A dashboard where doctors upload studies, follow each AI job, and get a draft report.</li>
+      <li>Secure sign-in and cloud storage for scans and reports.</li>
+    </ul>
+    <p class="stack"><b>Tech:</b> React, Node.js, Python, TensorFlow, PyTorch, DICOM, MySQL, Google Cloud, JWT</p>
+  </div>
 
-</body></html>
+  <div class="item">
+    <h3><a href="https://open-vsx.org/extension/shivabollam07/dicom-viewer">DICOM extensions</a></h3>
+    <p class="meta">VS Code and Antigravity · Open source</p>
+    <p>DICOM analysis tools that let developers open and inspect medical scans inside their code editor. Over 10K downloads, and people I've never met raise tickets on it.</p>
+    <p class="stack"><b>Tech:</b> JavaScript, VS Code Extension API, DICOM</p>
+  </div>
+</section>
+
+<section id="writing">
+  <h2>Writing</h2>
+  <p>23 posts on <a href="https://dev.to/shivabollam07">dev.to</a>. Some of them:</p>
+  <ul class="posts">
+    <li><a href="https://dev.to/shivabollam07/understanding-the-osi-model-a-step-by-step-breakdown-3np1">Understanding the OSI model, step by step</a><span class="date">Oct 2024</span></li>
+    <li><a href="https://dev.to/shivabollam07/js-vs-jsx-should-you-write-your-react-code-in-jsx-3mp9">.js vs .jsx: which should you use?</a><span class="date">Sep 2024</span></li>
+    <li><a href="https://dev.to/shivabollam07/exploring-java-threading-a-beginners-guide-211m">Exploring Java threading</a><span class="date">Sep 2023</span></li>
+    <li><a href="https://dev.to/shivabollam07/what-happens-when-we-run-a-java-code-1p8i">What happens when we run a .java file?</a><span class="date">Aug 2023</span></li>
+  </ul>
+</section>
+
+<section id="education">
+  <h2>Education</h2>
+
+  <div class="item">
+    <h3>B.Tech, Computer Science (AI)</h3>
+    <p class="meta">Amrita Vishwa Vidyapeetham · 2021 – 2025</p>
+    <p>Operating systems, databases, networks, OOP, Java, and data structures and algorithms.</p>
+  </div>
+
+  <div class="item">
+    <h3>Intermediate (MPC)</h3>
+    <p class="meta">Narayana · 2019 – 2021</p>
+    <p>Maths, physics and chemistry. Finished with 93.7%.</p>
+  </div>
+
+  <div class="item">
+    <h3>School</h3>
+    <p class="meta">Alphores Gurukula · 2016 – 2019</p>
+    <p>Finished with a 9.8 GPA. Won multiple gold and silver medals in SOF Olympiads, and gave talks in speech competitions.</p>
+  </div>
+</section>
+
+<section id="skills">
+  <h2>Skills</h2>
+  <p>Java, Spring Boot, Hibernate, React, Node.js, Express, MySQL, PostgreSQL, MongoDB, AWS, Git, Linux</p>
+</section>
+
+<section id="contact">
+  <h2>Contact</h2>
+  <p><a href="mailto:shivabollam07@gmail.com">shivabollam07@gmail.com</a></p>
+  <p>
+    <a href="https://github.com/ShivaBollam07">GitHub</a> ·
+    <a href="https://www.linkedin.com/search/results/people/?keywords=Bollam%20Shiva">LinkedIn</a> ·
+    <a href="https://dev.to/shivabollam07">dev.to</a> ·
+    <a href="https://leetcode.com/u/shivabollam07/">LeetCode</a>
+  </p>
+</section>
+
+</main>
+</body>
+</html>
